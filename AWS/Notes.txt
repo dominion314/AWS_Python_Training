@@ -1,0 +1,34 @@
+Calculator for Billing - https://calculator.s3.amazonaws.com/index.html
+
+https://docs.aws.amazon.com/cli/latest/reference/
+
+
+I. Basics
+
+Regions>Availability Zones>Data Centers>Edge and Point of Prescence.
+
+Good to have 3 discrete data centers in each AZ. Max is 6, min is 2. AZ's 
+are connected with high bandwidth ultra-low latency networks. 
+
+Global services - IAM, Route53, CloudFront, WAF
+Regional services - EC2, Lambda
+
+II. EC2
+
+Infratructure as a Service, renting virtual machines called Elastic Compute Cloud. 
+You can rent VM's w/EC2, store data in EBS (Elastic Block Storage), load balance traffic with ELB (Elastic Load Balancing), 
+and scale services with ASG (Auto Scaling Group).
+
+Sizing and Configuration includes OS, CPU, RAM, storage - network storage will use EBS and EFS (Elastic File Server) and hardware storage will use
+EC2 instance store. Finally, theres also Networking, Secruity groups, firewall rules, and bootstrap script options.
+
+t2.micro instances allow for 750 free hours of use. 
+
+III. IAM Permissions
+
+Password policies can be set according to: minimum password length, require specifc character types, require password change over time, prevent password re-use. 
+MFA - Multifactor Authentication, you want to preotect your root accounts and IAM users. MFA = password you know + security device you own.
+
+Main benefit of MFA is if a password is stolen the account is not compromised. 
+Your MFA options: Virtual MFA device (Googel Authenticator or Authy) - These support multiple tokens for a single device, one for phone, laptop, ipad, etc. 
+    The second option is a U2F Univerversial 2nd Factor Security Key. Or a hardware key fob MFA device. And finally a AWS GovCloud Hardware key gob MFA device. 

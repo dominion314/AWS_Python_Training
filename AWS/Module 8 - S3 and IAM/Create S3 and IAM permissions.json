@@ -1,0 +1,38 @@
+1. CMD: Create S3 bucket
+[
+aws s3 mb s3://dah666 --region us-east-1
+]
+
+OUTPUT:
+
+make_bucket: dah666
+
+
+2. CMD: Upload images to your bucket
+[
+    aws s3 sync ~/initial-images/ s3://dah666/images
+]
+
+OUTPUT:
+
+upload: initial-images/Strawberry-Tarts.jpg to s3://dah666/images/Strawberry-Tarts.jpg
+upload: initial-images/Cup-of-Hot-Chocolate.jpg to s3://dah666/images/Cup-of-Hot-Chocolate.jpg
+upload: initial-images/Donuts.jpg to s3://dah666/images/Donuts.jpg
+
+
+3. CMD: List your bucket contents
+[
+aws s3 ls s3://dah666/images/ --human-readable --summarize
+]
+
+OUTPUT:
+
+2021-10-26 11:07:50  308.7 KiB Cup-of-Hot-Chocolate.jpg
+2021-10-26 11:07:50  371.8 KiB Donuts.jpg
+2021-10-26 11:07:50  468.0 KiB Strawberry-Tarts.jpg
+
+4. Review IAM permissions from the walkthrough
+
+5. Review the mediaco IAM group
+
+Stuck on number 54

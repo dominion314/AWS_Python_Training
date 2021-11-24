@@ -1,0 +1,811 @@
+// Values you will need to find to deploy an RDS instance and migrate yoru SQL db.
+
+// Instance ID of MomPopCafeInstance
+// Instance type of MomPopCafeInstance
+// Public DNS name of MomPopCafeInstance
+// Public IP address of MomPopCafeInstance
+// Availability Zone of MomPopCafeInstance
+// VPC ID of MomPopCafe VPC
+// Group ID of MomPopCafeSecurityGroup
+// IPv4 CIDR block of MomPopCafe VPC
+// Subnet ID of MomPopCafe Public Subnet 1
+// IPv4 CIDR block of MomPopCafe Public Subnet 1
+// List of Availability Zones in the Region
+
+// [ec2-user@ip-10-200-0-247 ~]$ aws ec2 describe-instances --region us-east-1 --output json
+{
+    "Reservations": [
+        {
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": "ec2-3-89-219-13.compute-1.amazonaws.com", 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2021-10-14T21:32:18.000Z", 
+                    "PublicIpAddress": "3.89.219.13", 
+                    "PrivateIpAddress": "10.200.0.155", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-0937371900bc3549a", 
+                    "CpuOptions": {
+                        "CoreCount": 1, 
+                        "ThreadsPerCore": 1
+                    }, 
+                    "StateTransitionReason": "", 
+                    "InstanceId": "i-0e30c28510de453ef", 
+                    "EnaSupport": true, 
+                    "ImageId": "ami-04bfee437f38a691e", 
+                    "PrivateDnsName": "ip-10-200-0-155.ec2.internal", 
+                    "KeyName": "vockey", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "c7922a91861l1121712t1w892437992488-CliHostInstanceSG-1KFWOVYG1MTEE", 
+                            "GroupId": "sg-0f6f03086eb5bc46e"
+                        }
+                    ], 
+                    "ClientToken": "c7922-CliHo-1BH721S9TD3S1", 
+                    "SubnetId": "subnet-0df63fb7eac1be0f6", 
+                    "InstanceType": "t2.micro", 
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    }, 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:8c:c2:2c:2e:91", 
+                            "SourceDestCheck": false, 
+                            "VpcId": "vpc-0937371900bc3549a", 
+                            "Description": "", 
+                            "NetworkInterfaceId": "eni-07bfed25ba14a457d", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-200-0-155.ec2.internal", 
+                                    "PrivateIpAddress": "10.200.0.155", 
+                                    "Primary": true, 
+                                    "Association": {
+                                        "PublicIp": "3.89.219.13", 
+                                        "PublicDnsName": "ec2-3-89-219-13.compute-1.amazonaws.com", 
+                                        "IpOwnerId": "amazon"
+                                    }
+                                }
+                            ], 
+                            "PrivateDnsName": "ip-10-200-0-155.ec2.internal", 
+                            "InterfaceType": "interface", 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-084302280a61369d0", 
+                                "AttachTime": "2021-10-14T21:32:18.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "c7922a91861l1121712t1w892437992488-CliHostInstanceSG-1KFWOVYG1MTEE", 
+                                    "GroupId": "sg-0f6f03086eb5bc46e"
+                                }
+                            ], 
+                            "Ipv6Addresses": [], 
+                            "OwnerId": "892437992488", 
+                            "PrivateIpAddress": "10.200.0.155", 
+                            "SubnetId": "subnet-0df63fb7eac1be0f6", 
+                            "Association": {
+                                "PublicIp": "3.89.219.13", 
+                                "PublicDnsName": "ec2-3-89-219-13.compute-1.amazonaws.com", 
+                                "IpOwnerId": "amazon"
+                            }
+                        }
+                    ], 
+                    "SourceDestCheck": false, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "", 
+                        "AvailabilityZone": "us-east-1a"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-026815c9435871234", 
+                                "AttachTime": "2021-10-14T21:32:19.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/xvda", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "CliHostInstance", 
+                            "Key": "aws:cloudformation:logical-id"
+                        }, 
+                        {
+                            "Value": "arn:aws:cloudformation:us-east-1:892437992488:stack/c7922a91861l1121712t1w892437992488/18794f50-2d36-11ec-b3df-0acc80a06d55", 
+                            "Key": "aws:cloudformation:stack-id"
+                        }, 
+                        {
+                            "Value": "CLI Host", 
+                            "Key": "Name"
+                        }, 
+                        {
+                            "Value": "c7922a91861l1121712t1w892437992488", 
+                            "Key": "aws:cloudformation:stack-name"
+                        }, 
+                        {
+                            "Value": "c7922a91861l1121712t1w892437992488", 
+                            "Key": "cloudlab"
+                        }
+                    ], 
+                    "HibernationOptions": {
+                        "Configured": false
+                    }, 
+                    "MetadataOptions": {
+                        "State": "applied", 
+                        "HttpEndpoint": "enabled", 
+                        "HttpTokens": "optional", 
+                        "HttpPutResponseHopLimit": 1
+                    }, 
+                    "AmiLaunchIndex": 0
+                }
+            ], 
+            "ReservationId": "r-0a628f8ff89dcbd56", 
+            "RequesterId": "043234062703", 
+            "Groups": [], 
+            "OwnerId": "892437992488"
+        }, 
+        {
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": "ec2-54-159-94-201.compute-1.amazonaws.com", 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2021-10-14T21:33:57.000Z", 
+                    "PublicIpAddress": "54.159.94.201", 
+                    "PrivateIpAddress": "10.200.0.205", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-0937371900bc3549a", 
+                    "CpuOptions": {
+                        "CoreCount": 1, 
+                        "ThreadsPerCore": 1
+                    }, 
+                    "StateTransitionReason": "", 
+                    "InstanceId": "i-05f71c540b3252c58", 
+                    "EnaSupport": true, 
+                    "ImageId": "ami-04bfee437f38a691e", 
+                    "PrivateDnsName": "ip-10-200-0-205.ec2.internal", 
+                    "KeyName": "vockey", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "c7922a91861l1121712t1w892437992488-MomPopCafeSecurityGroup-IHOTGTON6BU3", 
+                            "GroupId": "sg-0c9b8ba1b470c2bef"
+                        }
+                    ], 
+                    "ClientToken": "c7922-MomPo-2PQBL6F1YS5F", 
+                    "SubnetId": "subnet-0df63fb7eac1be0f6", 
+                    "InstanceType": "t2.small", 
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    }, 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:39:1f:cf:d9:3f", 
+                            "SourceDestCheck": false, 
+                            "VpcId": "vpc-0937371900bc3549a", 
+                            "Description": "", 
+                            "NetworkInterfaceId": "eni-02e108ca087e300c5", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-200-0-205.ec2.internal", 
+                                    "PrivateIpAddress": "10.200.0.205", 
+                                    "Primary": true, 
+                                    "Association": {
+                                        "PublicIp": "54.159.94.201", 
+                                        "PublicDnsName": "ec2-54-159-94-201.compute-1.amazonaws.com", 
+                                        "IpOwnerId": "amazon"
+                                    }
+                                }
+                            ], 
+                            "PrivateDnsName": "ip-10-200-0-205.ec2.internal", 
+                            "InterfaceType": "interface", 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-0c7fae20cfffffc3f", 
+                                "AttachTime": "2021-10-14T21:33:57.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "c7922a91861l1121712t1w892437992488-MomPopCafeSecurityGroup-IHOTGTON6BU3", 
+                                    "GroupId": "sg-0c9b8ba1b470c2bef"
+                                }
+                            ], 
+                            "Ipv6Addresses": [], 
+                            "OwnerId": "892437992488", 
+                            "PrivateIpAddress": "10.200.0.205", 
+                            "SubnetId": "subnet-0df63fb7eac1be0f6", 
+                            "Association": {
+                                "PublicIp": "54.159.94.201", 
+                                "PublicDnsName": "ec2-54-159-94-201.compute-1.amazonaws.com", 
+                                "IpOwnerId": "amazon"
+                            }
+                        }
+                    ], 
+                    "SourceDestCheck": false, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "", 
+                        "AvailabilityZone": "us-east-1a"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-0db99af8d73547fbf", 
+                                "AttachTime": "2021-10-14T21:33:58.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "IamInstanceProfile": {
+                        "Id": "AIPA47SLTCQUF2BHXSP4H", 
+                        "Arn": "arn:aws:iam::892437992488:instance-profile/c7922a91861l1121712t1w892437992488-MomPopInstanceProfile-OOVDIS3QXF0G"
+                    }, 
+                    "RootDeviceName": "/dev/xvda", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "c7922a91861l1121712t1w892437992488", 
+                            "Key": "cloudlab"
+                        }, 
+                        {
+                            "Value": "MomPopCafeInstance", 
+                            "Key": "aws:cloudformation:logical-id"
+                        }, 
+                        {
+                            "Value": "MomPopCafeInstance", 
+                            "Key": "Name"
+                        }, 
+                        {
+                            "Value": "arn:aws:cloudformation:us-east-1:892437992488:stack/c7922a91861l1121712t1w892437992488/18794f50-2d36-11ec-b3df-0acc80a06d55", 
+                            "Key": "aws:cloudformation:stack-id"
+                        }, 
+                        {
+                            "Value": "c7922a91861l1121712t1w892437992488", 
+                            "Key": "aws:cloudformation:stack-name"
+                        }
+                    ], 
+                    "HibernationOptions": {
+                        "Configured": false
+                    }, 
+                    "MetadataOptions": {
+                        "State": "applied", 
+                        "HttpEndpoint": "enabled", 
+                        "HttpTokens": "optional", 
+                        "HttpPutResponseHopLimit": 1
+                    }, 
+                    "AmiLaunchIndex": 0
+                }
+            ], 
+            "ReservationId": "r-089486294d8158228", 
+            "RequesterId": "043234062703", 
+            "Groups": [], 
+            "OwnerId": "892437992488"
+        }
+    ]
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+// Use an AWS command that will return the VPC ID and Group ID
+
+aws ec2 describe-instances \
+--filters "Name=tag:Name,Values= MomPopCafeInstance" \
+--query "Reservations[*].Instances[*].[InstanceId,InstanceType,PublicDnsName,PublicIpAddress,Placement.AvailabilityZone,VpcId,SecurityGroups[*].GroupId]"
+
+// You will need to match the output to this template.
+
+// MomPopCafeInstance Instance ID: i-nnnnnnnnnn
+// MomPopCafeInstance Instance Type: t2.small
+// MomPopCafeInstance Public DNS Name: ec2-xxx-xxx-xxx-xxx.eu-west-2.compute.amazonaws.com
+// MomPopCafeInstance Public IP Address: nnn.nnn.nnn.nnn
+// MomPopCafeInstance Availability Zone: eu-west-2a
+// MomPopCafeInstance VPC ID: vpc-xxxxxxxxxxx
+// MomPopCafeSecurityGroup Group ID: sg-zzzzzzzzzz
+
+//OUTPUT:
+
+[
+    [
+        [
+            "i-05f71c540b3252c58", 
+            "t2.small", 
+            "ec2-54-159-94-201.compute-1.amazonaws.com", 
+            "54.159.94.201", 
+            "us-east-1a", 
+            "vpc-0937371900bc3549a", 
+            [
+                "sg-0c9b8ba1b470c2bef"
+            ]
+        ]
+    ]
+]
+
+// Determine the IPv4 cidr block for VPC
+
+aws ec2 describe-vpcs --vpc-ids vpc-0937371900bc3549a \
+--filters "Name=tag:Name,Values= MomPopCafe VPC" \
+--query "Vpcs[*].CidrBlock"
+
+//OUTPUT
+
+[
+    "10.200.0.0/20"
+]
+
+// Determine subnet ID
+
+aws ec2 describe-subnets \
+--filters "Name=vpc-id,Values=vpc-0937371900bc3549a" \
+--query "Subnets[*].[SubnetId,CidrBlock]"
+
+
+//OUTPUT
+
+[
+    [
+        "subnet-0df63fb7eac1be0f6", 
+        "10.200.0.0/24"
+    ]
+]
+
+
+// Determine Availability Zones
+
+aws ec2 describe-availability-zones \
+--filters "Name=region-name,Values=us-east-1" \
+--query "AvailabilityZones[*].ZoneName"
+
+// OUTPUT
+
+[
+    "us-east-1a", 
+    "us-east-1b", 
+    "us-east-1c", 
+    "us-east-1d", 
+    "us-east-1e", 
+    "us-east-1f"
+]
+
+
+MomPopCafeInstance Instance ID: i-05f71c540b3252c58
+MomPopCafeInstance Instance Type: t2.small
+MomPopCafeInstance Public DNS Name: ec2-54-159-94-201.compute-1.amazonaws.com 
+MomPopCafeInstance Public IP Address: 54.159.94.201
+MomPopCafeInstance Availability Zone: us-east-1a
+MomPopCafeInstance VPC ID: vpc-0937371900bc3549a
+MomPopCafeSecurityGroup Group ID: sg-0c9b8ba1b470c2bef
+MomPopCafe VPC IPv4 CIDR block: 10.200.0.0/20
+MomPopCafe Public Subnet 1 Subnet ID: subnet-0df63fb7eac1be0f6
+MomPopCafe Public Subnet 1 IPv4 CIDR block: 10.200.0.0/24
+List of Availability Zones in the Region: us-east-1a, us-east-1b, us-east-1c, us-east-1d, us-east-1e, us-east-1f
+Number of orders: nn
+
+// Create a security group for the database we are creating.
+
+aws ec2 create-security-group \
+--group-name MomPopCafeDatabaseSG \
+--description "Security group for Mom Pop Cafe database" \
+--vpc-id vpc-0937371900bc3549a
+
+// OUTPUT
+
+{
+    "GroupId": "sg-00ff1d6d7040058ac"
+}
+
+// Create the inbound rule allowing only SQL. 
+
+aws ec2 authorize-security-group-ingress \
+--group-id sg-00ff1d6d7040058ac \
+--protocol tcp --port 3306 \
+--source-group sg-0c9b8ba1b470c2bef
+
+// Check the ingress rule was applied
+
+aws ec2 describe-security-groups \
+--query "SecurityGroups[*].[GroupName,GroupId,IpPermissions]" \
+--filters "Name=group-name,Values='MomPopCafeDatabaseSG'"
+
+// OUTPUT
+
+[
+    [
+        "MomPopCafeDatabaseSG", 
+        "sg-00ff1d6d7040058ac", 
+        [
+            {
+                "PrefixListIds": [], 
+                "FromPort": 3306, 
+                "IpRanges": [], 
+                "ToPort": 3306, 
+                "IpProtocol": "tcp", 
+                "UserIdGroupPairs": [
+                    {
+                        "UserId": "892437992488", 
+                        "GroupId": "sg-0c9b8ba1b470c2bef"
+                    }
+                ], 
+                "Ipv6Ranges": []
+            }
+        ]
+    ]
+]
+
+// Create subnets
+
+aws ec2 create-subnet \
+--vpc-id vpc-0937371900bc3549a \
+--cidr-block 10.200.2.0/23 \
+--availability-zone us-east-1a
+
+// OUTPUT
+
+{
+    "Subnet": {
+        "MapPublicIpOnLaunch": false, 
+        "AvailabilityZoneId": "use1-az2", 
+        "AvailableIpAddressCount": 507, 
+        "DefaultForAz": false, 
+        "SubnetArn": "arn:aws:ec2:us-east-1:892437992488:subnet/subnet-02911c28157dafaa2", 
+        "Ipv6CidrBlockAssociationSet": [], 
+        "VpcId": "vpc-0937371900bc3549a", 
+        "State": "available", 
+        "AvailabilityZone": "us-east-1a", 
+        "SubnetId": "subnet-02911c28157dafaa2", 
+        "OwnerId": "892437992488", 
+        "CidrBlock": "10.200.2.0/23", 
+        "AssignIpv6AddressOnCreation": false
+    }
+}
+
+// Create second subnet in different AZ
+
+aws ec2 create-subnet \
+--vpc-id vpc-0937371900bc3549a \
+--cidr-block 10.200.10.0/23 \
+--availability-zone us-east-1b
+
+// OUTPUT
+
+{
+    "Subnet": {
+        "MapPublicIpOnLaunch": false, 
+        "AvailabilityZoneId": "use1-az4", 
+        "AvailableIpAddressCount": 507, 
+        "DefaultForAz": false, 
+        "SubnetArn": "arn:aws:ec2:us-east-1:892437992488:subnet/subnet-0bac1c6029c6ba4c5", 
+        "Ipv6CidrBlockAssociationSet": [], 
+        "VpcId": "vpc-0937371900bc3549a", 
+        "State": "available", 
+        "AvailabilityZone": "us-east-1b", 
+        "SubnetId": "subnet-0bac1c6029c6ba4c5", 
+        "OwnerId": "892437992488", 
+        "CidrBlock": "10.200.10.0/23", 
+        "AssignIpv6AddressOnCreation": false
+    }
+}
+
+
+// Create a DB subnet  group
+
+aws rds create-db-subnet-group \
+--db-subnet-group-name "MomPopCafeDB Subnet Group" \
+--db-subnet-group-description "DB subnet group for Mom & Pop Cafe" \
+--subnet-ids subnet-02911c28157dafaa2 subnet-0bac1c6029c6ba4c5 \
+--tags "Key=Name,Value= MomPopCafeDatabaseSubnetGroup"
+
+// OUTPUT
+
+{
+    "DBSubnetGroup": {
+        "Subnets": [
+            {
+                "SubnetStatus": "Active", 
+                "SubnetIdentifier": "subnet-02911c28157dafaa2", 
+                "SubnetOutpost": {}, 
+                "SubnetAvailabilityZone": {
+                    "Name": "us-east-1a"
+                }
+            }, 
+            {
+                "SubnetStatus": "Active", 
+                "SubnetIdentifier": "subnet-0bac1c6029c6ba4c5", 
+                "SubnetOutpost": {}, 
+                "SubnetAvailabilityZone": {
+                    "Name": "us-east-1b"
+                }
+            }
+        ], 
+        "VpcId": "vpc-0937371900bc3549a", 
+        "DBSubnetGroupDescription": "DB subnet group for Mom & Pop Cafe", 
+        "SubnetGroupStatus": "Complete", 
+        "DBSubnetGroupArn": "arn:aws:rds:us-east-1:892437992488:subgrp:mompopcafedb subnet group", 
+        "DBSubnetGroupName": "mompopcafedb subnet group"
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+// Create the RDS MariaDB Instance
+
+// DB instance identifier: MomPopCafeDBInstance
+// Engine option: MariaDB
+// DB engine version: 10.2.11
+// DB instance class: db.t2.micro
+// Allocated storage: 20 GB
+// Availability Zone: us-east-1a
+// DB Subnet group: MomPopCafeDB Subnet Group
+// VPC security groups: MomPopCafeDatabaseSG
+// Public accessibility: No
+// Username: root
+// Password: Re:Start!9
+
+aws rds create-db-instance \
+--db-instance-identifier MomPopCafeDBInstance \
+--engine mariadb \
+--engine-version 10.2.11 \
+--db-instance-class db.t2.micro \
+--allocated-storage 20 \
+--availability-zone us-east-1a \
+--db-subnet-group-name "MomPopCafeDB Subnet Group" \
+--vpc-security-group-ids sg-00ff1d6d7040058ac \
+--no-publicly-accessible \
+--master-username root --master-user-password 'Re:Start!9'
+
+// OUTPUT
+
+{
+    "DBInstance": {
+        "PubliclyAccessible": false, 
+        "MasterUsername": "root", 
+        "MonitoringInterval": 0, 
+        "LicenseModel": "general-public-license", 
+        "VpcSecurityGroups": [
+            {
+                "Status": "active", 
+                "VpcSecurityGroupId": "sg-00ff1d6d7040058ac"
+            }
+        ], 
+        "CopyTagsToSnapshot": false, 
+        "OptionGroupMemberships": [
+            {
+                "Status": "in-sync", 
+                "OptionGroupName": "default:mariadb-10-2"
+            }
+        ], 
+        "PendingModifiedValues": {
+            "MasterUserPassword": "****"
+        }, 
+        "Engine": "mariadb", 
+        "MultiAZ": false, 
+        "DBSecurityGroups": [], 
+        "DBParameterGroups": [
+            {
+                "DBParameterGroupName": "default.mariadb10.2", 
+                "ParameterApplyStatus": "in-sync"
+            }
+        ], 
+        "PerformanceInsightsEnabled": false, 
+        "AutoMinorVersionUpgrade": true, 
+        "PreferredBackupWindow": "05:15-05:45", 
+        "DBSubnetGroup": {
+            "Subnets": [
+                {
+                    "SubnetStatus": "Active", 
+                    "SubnetIdentifier": "subnet-02911c28157dafaa2", 
+                    "SubnetOutpost": {}, 
+                    "SubnetAvailabilityZone": {
+                        "Name": "us-east-1a"
+                    }
+                }, 
+                {
+                    "SubnetStatus": "Active", 
+                    "SubnetIdentifier": "subnet-0bac1c6029c6ba4c5", 
+                    "SubnetOutpost": {}, 
+                    "SubnetAvailabilityZone": {
+                        "Name": "us-east-1b"
+                    }
+                }
+            ], 
+            "DBSubnetGroupName": "mompopcafedb subnet group", 
+            "VpcId": "vpc-0937371900bc3549a", 
+            "DBSubnetGroupDescription": "DB subnet group for Mom & Pop Cafe", 
+            "SubnetGroupStatus": "Complete"
+        }, 
+        "ReadReplicaDBInstanceIdentifiers": [], 
+        "AllocatedStorage": 20, 
+        "DBInstanceArn": "arn:aws:rds:us-east-1:892437992488:db:mompopcafedbinstance", 
+        "BackupRetentionPeriod": 1, 
+        "PreferredMaintenanceWindow": "thu:07:32-thu:08:02", 
+        "DBInstanceStatus": "creating", 
+        "IAMDatabaseAuthenticationEnabled": false, 
+        "EngineVersion": "10.2.11", 
+        "DeletionProtection": false, 
+        "AvailabilityZone": "us-east-1a", 
+        "DomainMemberships": [], 
+        "StorageType": "gp2", 
+        "DbiResourceId": "db-AEJNSRAMDSBYE2JQBKQVDC3Z6E", 
+        "CACertificateIdentifier": "rds-ca-2019", 
+        "StorageEncrypted": false, 
+        "AssociatedRoles": [], 
+        "DBInstanceClass": "db.t2.micro", 
+        "DbInstancePort": 0, 
+        "DBInstanceIdentifier": "mompopcafedbinstance"
+    }
+}
+
+
+// Check the DB status
+
+aws rds describe-db-instances \
+--db-instance-identifier MomPopCafeDBInstance \
+--query "DBInstances[*].[Endpoint.Address,AvailabilityZone,PreferredBackupWindow,BackupRetentionPeriod,DBInstanceStatus]"
+
+// OUTPUT
+
+[
+    [
+        "mompopcafedbinstance.cl9pmmdu952u.us-east-1.rds.amazonaws.com", 
+        "us-east-1a", 
+        "05:15-05:45", 
+        1, 
+        "backing-up"
+    ]
+]
+
+
+// Migrate you app data to RDS instance. 
+// Open an SSH command directly to the public IP of the instance, not the CLI isnance
+// Use the following command to create a backup of the DB
+
+mysqldump --user=root --password='Re:Start!9' \
+--databases mom_pop_db --add-drop-database > mompopdb-backup.sql
+
+
+
+less mompopdb-backup.sql
+
+// OUTPUT
+
+-- MySQL dump 10.19  Distrib 10.2.38-MariaDB, for Linux (x86_64)
+--
+-- Host: localhost    Database: mom_pop_db
+-- ------------------------------------------------------
+-- Server version       10.2.38-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+
+// Keep checking the instance until it goes from 'backing-up to available, record name'
+
+mompopcafedbinstance.cl9pmmdu952u.us-east-1.rds.amazonaws.com
+
+// Restore the backup
+
+mysql --user=root --password='Re:Start!9' \
+--host=mompopcafedbinstance.cl9pmmdu952u.us-east-1.rds.amazonaws.com \
+< mompopdb-backup.sql
+
+
+// Verify creation
+
+mysql --user=root --password='Re:Start!9' \
+--host=mompopcafedbinstance.cl9pmmdu952u.us-east-1.rds.amazonaws.com \
+mom_pop_db
+
+// OUTPUT
+
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 28
+Server version: 10.2.11-MariaDB-log MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [mom_pop_db]> 
+
+// Run an SQL command
+
+MariaDB [mom_pop_db]> select * from product;
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+| id | product_name              | description                                                     | price | product_group | image_url                               |
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+|  1 | Croissant                 | Fresh, buttery and fluffy... Simply delicious!                  |  1.50 |             1 | images/Croissants.jpg                   |
+|  2 | Donut                     | We have more than half-a-dozen flavors!                         |  1.00 |             1 | images/Donuts.jpg                       |
+|  3 | Chocolate Chip Cookie     | Made with Swiss chocolate with a touch of Madagascar vanilla    |  2.50 |             1 | images/Chocolate-Chip-Cookies.jpg       |
+|  4 | Muffin                    | Banana bread, blueberry, cranberry or apple                     |  3.00 |             1 | images/Muffins.jpg                      |
+|  5 | Strawberry Blueberry Tart | Bursting with the taste and aroma of fresh fruit                |  3.50 |             1 | images/Strawberry-&-Blueberry-Tarts.jpg |
+|  6 | Strawberry Tart           | Made with fresh ripe strawberries and a delicious whipped cream |  3.50 |             1 | images/Strawberry-Tarts.jpg             |
+|  7 | Coffee                    | Freshly-ground black or blended Columbian coffee                |  3.00 |             2 | images/Coffee.jpg                       |
+|  8 | Hot Chocolate             | Rich and creamy, and made with real chocolate                   |  3.00 |             2 | images/Cup-of-Hot-Chocolate.jpg         |
+|  9 | Latte                     | Offered hot or cold and in various delicious flavors            |  3.50 |             2 | images/Latte.jpg                        |
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [mom_pop_db]> 
+
+
+
+// Refer to end of Task 2 and Task 3 from the walkthrough.
+
+
+////////////////////////////////////////////////////////
+
+//Monitor the instance by opening an SQL session via ssh to the RDS instance.
+
+mysql --user=root --password='Re:Start!9' \
+--host=mompopcafedbinstance.cl9pmmdu952u.us-east-1.rds.amazonaws.com \
+mom_pop_db
+
+// Run the SQL command
+
+MariaDB [mom_pop_db]> select * from product;
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+| id | product_name              | description                                                     | price | product_group | image_url                               |
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+|  1 | Croissant                 | Fresh, buttery and fluffy... Simply delicious!                  |  1.50 |             1 | images/Croissants.jpg                   |
+|  2 | Donut                     | We have more than half-a-dozen flavors!                         |  1.00 |             1 | images/Donuts.jpg                       |
+|  3 | Chocolate Chip Cookie     | Made with Swiss chocolate with a touch of Madagascar vanilla    |  2.50 |             1 | images/Chocolate-Chip-Cookies.jpg       |
+|  4 | Muffin                    | Banana bread, blueberry, cranberry or apple                     |  3.00 |             1 | images/Muffins.jpg                      |
+|  5 | Strawberry Blueberry Tart | Bursting with the taste and aroma of fresh fruit                |  3.50 |             1 | images/Strawberry-&-Blueberry-Tarts.jpg |
+|  6 | Strawberry Tart           | Made with fresh ripe strawberries and a delicious whipped cream |  3.50 |             1 | images/Strawberry-Tarts.jpg             |
+|  7 | Coffee                    | Freshly-ground black or blended Columbian coffee                |  3.00 |             2 | images/Coffee.jpg                       |
+|  8 | Hot Chocolate             | Rich and creamy, and made with real chocolate                   |  3.00 |             2 | images/Cup-of-Hot-Chocolate.jpg         |
+|  9 | Latte                     | Offered hot or cold and in various delicious flavors            |  3.50 |             2 | images/Latte.jpg                        |
++----+---------------------------+-----------------------------------------------------------------+-------+---------------+-----------------------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [mom_pop_db]> exit
+Bye
+
+You have successfully migrated a local db to RDS!!!
+
+
+
