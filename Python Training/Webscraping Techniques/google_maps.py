@@ -1,8 +1,7 @@
-'''Open google maps using an address in CLI'''
+'''Open google maps using an address in CLI or clipboard'''
 
-import webbrowser, sys
-import pyperclip #Gets clipboard content
-import requests 
+import webbrowser, sys, pyperclip #Gets clipboard content
+
 
 if len(sys.argv) > 1:
     #Get address from command line.
@@ -11,5 +10,5 @@ else:
     #Handle the clipborad content and lanch the browser.sys
     address = pyperclip.paste()
 
-webbrowser.open('https://www.google.com/maps/place' + address)
+webbrowser.open('https://www.google.com/maps/place/' + address)
 
