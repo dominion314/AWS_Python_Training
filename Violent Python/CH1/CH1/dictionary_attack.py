@@ -1,5 +1,22 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+'''
+Dictionary Attack. Our main function opens the encrypted password
+file and reads the contents of each line in the password file.
+For each line, it splits out the username and the hashed
+password. For each individual hashed password, the main functions
+calls the testPass() function that tests the passwords against
+a dictionary file. 
+
+The function, testPass(), takes the encrypted password as a parameter
+and returns either after finding the password or exhausting the words
+in the dictionary. Notice that the function first strips the salt 
+from the first two characters of the password hash. Next, it opens the 
+dictionary and iterates through each word, creating an exnrypted password
+hash from the dictionary word and the salt. 
+
+If the result matches our encrypted password hash, the function prints
+a message indicating the found password and returns. Others, it 
+continues to test every word in the dictionary.
+'''
 import crypt
 
 
