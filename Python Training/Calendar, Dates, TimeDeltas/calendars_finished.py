@@ -1,10 +1,10 @@
-#
-# Example file for working with Calendars
-#
+'''
+Example file for working with Calendars
+'''
 
 import calendar
 
-# create a plain text calendar
+# create a plain text calendar using TextCalendar and formatmonth
 c = calendar.TextCalendar(calendar.SUNDAY)
 str = c.formatmonth(2017, 1, 0, 0)
 print (str)
