@@ -54,7 +54,10 @@ print(containsWGU('Night Owls Rock'))
 
 # # Complete the function to print all of the words in the given string
 def printWords(mystring):
-    print(mystring)
+    list = mystring.split()
+
+    print(str(list))
+
 # # expected output: ['WGU', 'College', 'of', 'IT']
 printWords('WGU College of IT')    
     
@@ -70,25 +73,39 @@ printWords('Night Owls Rock')
 def combineWords(words):
    return " ".join(words)
 
+# or
+
+#def combineWords(words):
+#   list = " ".join(words)
+#   print(list)
+
 # # expected output: WGU College of IT
 print(combineWords(['WGU', 'College', 'of', 'IT']))
     
-# # expected output: Night Owls Rock
+# Expected output: Night Owls Rock
 print(combineWords(['Night', 'Owls', 'Rock']))
 '''
 
 
 '''# Task 6 - Use Replace Method to complete the function to replace the word WGU with Western Governors University and print the new string
 
-# # Complete the function to replace the word WGU with Western Governors University
-# # and print the new string
+# Complete the function to replace the word WGU with 
+# Western Governors University
+# and print the new string
+
 def replaceWGU(mystring):
     print(mystring.replace('WGU', 'Western Governors University'))
 
-# # expected output: Western Governors University Rocks
+# Or
+
+# def replaceWGU(mystring):
+#     replaceWord = mystring.replace('WGU', 'WGU2')
+#     print(replaceWord)
+
+# Expected output: Western Governors University Rocks
 replaceWGU('WGU Rocks')
     
-# # expected output: Hello, Western Governors University
+# Expected output: Hello, Western Governors University
 replaceWGU('Hello, WGU')
 '''
 
