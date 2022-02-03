@@ -12,7 +12,7 @@ A seven-segment number display module, used for calculator and digital clock pro
  E     C
  |__D__|"""
 
-def getSevSegStr(num, minWidth=0):
+def getSevSegStr(number, minWidth=0):
     '''Return a seven-segment display string of the number
     The returned string will be padded with zeroes if 
     it is smaller thatn the minWidth'''
