@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     dbUser = event['dbUser']
     dbPassword = event['dbPassword']
 
-    # Establish a connection to the Mop & Pop database, and set the cursor to return results as a Python dictionary.
+    # Establish a connection to the TTGD database, and set the cursor to return results as a Python dictionary.
     
     try:
         conn = pymysql.connect(dbUrl, user=dbUser, passwd=dbPassword, db=dbName, cursorclass=pymysql.cursors.DictCursor)

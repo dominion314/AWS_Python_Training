@@ -18,7 +18,7 @@ vpc=""
 while [[ "$vpc" == "" ]] ; do
   for i in $(aws ec2 describe-regions | grep RegionName | cut -d '"' -f4) ; do
     region=$i;
-    vpc=$(aws ec2 describe-vpcs --region $i --filters "Name=tag:Name,Values='MomPopCafe VPC'" --profile $profile | grep VpcId | cut -d '"' -f4 | sed -n 1p );
+    vpc=$(aws ec2 describe-vpcs --region $i --filters "Name=tag:Name,Values='ttgd VPC'" --profile $profile | grep VpcId | cut -d '"' -f4 | sed -n 1p );
     if [[ "$vpc" != "" ]]; then
     	break;
     fi
@@ -29,14 +29,14 @@ echo "VPC: "$vpc
 echo "Region: "$region
 
 vpc=$(aws ec2 describe-vpcs \
---filters "Name=tag:Name,Values='MomPopCafe VPC'" \
+--filters "Name=tag:Name,Values='ttgd VPC'" \
 --region $region \
 --profile $profile | grep VpcId | cut -d '"' -f4 | sed -n 1p)
 echo "VPC: "$vpc
 
 # get subnetId
 subnetId=$(aws ec2 describe-subnets \
---filters "Name=tag:Name,Values='MomPopCafe Public Subnet 1'" \
+--filters "Name=tag:Name,Values='ttgd Public Subnet 1'" \
 --region $region \
 --profile $profile \
 --query "Subnets[*]" | grep SubnetId | cut -d '"' -f4 | sed -n 1p)
@@ -56,11 +56,11 @@ imageId=$(aws ec2 describe-images \
 --region $region | grep ami- | cut -d '"' -f2 | sed -n 1p)
 echo "AMI ID: "$imageId
 
-#check for existing mompopcafe instance
+#check for existing ttgd instance
 existingEc2Instance=$(aws ec2 describe-instances \
 --region $region \
 --profile $profile \
---filters "Name=tag:Name,Values=mompopcafeserver" "Name=instance-state-name,Values=running" \
+--filters "Name=tag:Name,Values=ttgdserver" "Name=instance-state-name,Values=running" \
 | grep InstanceId | cut -d '"' -f4)
 if [[ "$existingEc2Instance" != "" ]]; then
   echo
@@ -91,10 +91,10 @@ if [[ "$existingEc2Instance" != "" ]]; then
   sleep 10 #give it 10 seconds before trying to delete the SG this instance used.
 fi
 
-#check for existing mompopcafeSG security Group
+#check for existing ttgdSG security Group
 existingMpSg=$(aws ec2 describe-security-groups \
 --region $region \
---query "SecurityGroups[?contains(GroupName, 'mompopcafeSG')]" \
+--query "SecurityGroups[?contains(GroupName, 'ttgdSG')]" \
 --profile $profile | grep GroupId | cut -d '"' -f4)
 
 if [[ "$existingMpSg" != "" ]]; then
@@ -126,10 +126,10 @@ fi
 # CREATE a security group and capture the name of it
 echo
 echo "Creating a new security group..."
-securityGroup=$(aws ec2 create-security-group --group-name "mompopcafeSG" \
---description "mompopcafeSG" \
+securityGroup=$(aws ec2 create-security-group --group-name "ttgdSG" \
+--description "ttgdSG" \
 --region $region \
---group-name "mompopcafeSG" \
+--group-name "ttgdSG" \
 --vpc-id $vpc --profile $profile | grep GroupId | cut -d '"' -f4 )
 echo "Security Group: "$securityGroup
 
@@ -162,7 +162,7 @@ instanceDetails=$(aws ec2 run-instances \
 --region us-east-1 \
 --subnet-id $subnetId \
 --security-group-ids $securityGroup \
---tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=mompopcafeserver}]' \
+--tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ttgdserver}]' \
 --associate-public-ip-address \
 --profile $profile \
 --user-data file://create-lamp-instance-userdata.txt )
@@ -196,7 +196,7 @@ echo "Then connect using this command (with .pem or .ppk added to the end of the
 echo "ssh -i path-to/"$key" ec2-user@"$pubIp
 echo
 echo "The website should also become available at"
-echo "http://"$pubIp"/mompopcafe/"
+echo "http://"$pubIp"/ttgd/"
 
 echo
 DATE=`date '+%Y-%m-%d %H:%M:%S'`

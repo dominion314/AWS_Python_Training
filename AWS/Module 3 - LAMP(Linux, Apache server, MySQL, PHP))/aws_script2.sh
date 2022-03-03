@@ -23,25 +23,25 @@ chmod 2775 /var/www
 #Check /var/log/cloud-init-output.log after this runs to see errors, if any.
 
 #
-# Download and unzip the Mom & Pop Cafe application files.
+# Download and unzip the TTGD application files.
 #
 
 # Database scripts
-wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/ILT-TF-200-ACSOPS-1/activity-3/momPopDb.tar.gz
-tar -zxvf momPopDb.tar.gz
+wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/ILT-TF-200-ACSOPS-1/activity-3/ttgd.tar.gz
+tar -zxvf ttgd.tar.gz
 
 # Web application files
-wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/ILT-TF-200-ACSOPS-1/activity-3/mompopcafe.tar.gz
-tar -zxvf mompopcafe.tar.gz -C /var/www/html/
+wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/ILT-TF-200-ACSOPS-1/activity-3/ttgd.tar.gz
+tar -zxvf ttgd.tar.gz -C /var/www/html/
 
 #
 # Run the scripts to set the database root password, and create and populate the application database.
 # Check the following logs to make sure there are no errors:
 #
-#       /momPopDb/set-root-password.log
-#       /momPopDb/create-db.log
+#       /ttgd/set-root-password.log
+#       /ttgd/create-db.log
 #
-cd momPopDb
+cd ttgd
 ./set-root-password.sh
 ./create-db.sh
 hostnamectl set-hostname web-server
