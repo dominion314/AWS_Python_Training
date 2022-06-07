@@ -1,0 +1,125 @@
+AWS Identity and Access Management (IAM) is a service that allows AWS customers to manage user access and permissions for their accounts, as well as available APIs/services within AWS. IAM can manage users and security credentials (such as API access keys), and allow users to access AWS resources.
+
+In this lab, we will walk through the foundations of IAM. We'll focus on user and group management as well as how to assign access to specific resources using IAM-managed policies. We'll learn how to find the login URL where AWS users can log in to their account and explore this from a real-world use case perspective.
+
+Solution
+Log in to the AWS Management Console using the credentials provided on the lab instructions page. Make sure you're using the us-east-1 region.
+
+Environment Walkthrough
+Explore the Users
+Navigate to IAM.
+From the left-hand menu, click Users.
+Click user-1.
+Select the Permissions and Groups tabs, where we'll see user-1 does not have any permissions assigned to it and does not belong to any groups.
+Select the Security credentials tab, where you would see user access keys, SSH public keys, and HTTPS Git credentials for AWS CodeCommit.
+Select the Access Advisor tab to see which services the user has accessed and when.
+At the top, under Summary, observe the user’s ARN (Amazon Resource Name), path, and creation time.
+Explore the Groups
+There are 3 groups we're going to focus on:
+
+EC2-Admin: Provides permissions to view, start, and stop EC2 instances
+
+EC2-Support: Provides read-only access to EC2
+
+S3-Support: Provides read-only access to S3
+
+Note: There are 2 different kinds of policies for these groups:
+
+Managed policies: Policies shared among users and/or groups that are pre-built either by AWS or an administrator within the AWS account. When it's updated, the changes to this policy are immediately applied for all users and groups to which it's attached.
+Inline policies: Policies assigned to just one user or group that are typically used in one-off situations.
+In the left-hand menu, click User groups.
+
+Click EC2-Admin.
+
+Click Permissions, where we'll see EC2-Admin has an inline policy with a set of permissions associated with it.
+
+Click the plus-sign icon next to the ec2-admin policy to view the policy and see the actions the group is allowed to take (and which resources the action can be taken on) or if it has read-only access.
+
+Note: From this policy, we have permission to view, start, and stop EC2 instances on all resources, view elastic load balancers, list metrics, get metric statistics, and describe metrics (which our CloudWatch metrics automatically configured with our EC2 instance). The same permissions apply to our Auto Scaling service.
+
+Click Cancel.
+
+In the left-hand menu, click User groups.
+
+Click EC2-Support.
+
+Click Permissions, where we'll see it has a managed policy created by AWS.
+
+Click the plus-sign icon next to the AmazonEC2ReadOnlyAccess policy.
+
+Note: This group can describe EC2 instances, elastic load balancers, CloudWatch metrics, and our Auto Scaling configurations. It doesn't allow us to stop, start, or create EC2 instances. It's a read-only policy, meaning we can view what's happening inside EC2, but we can't make changes to the resource.
+
+Click Cancel.
+
+In the left-hand menu, click User groups.
+
+Click S3-Support.
+
+Click Permissions. Our S3-Support group is only allowed read-only access.
+
+Click the plus-sign icon next to the AmazonS3ReadOnlyAccess policy, where we'll see the Get and List actions that allow us to view the S3 bucket and the objects in it.
+
+Click Cancel.
+
+Add the Users to the Proper Groups
+In the left-hand menu, click User groups.
+Click S3-Support.
+In the Users section, click Add users.
+Select user-1, and click Add users.
+in the left-hand menu, click User groups.
+Click EC2-Support.
+In the Users section, click Add users.
+Select user-2, and click Add users.
+In the left-hand menu, click User groups.
+Click EC2-Admin.
+In the Users section, click Add users.
+Select user-3, and click Add users.
+In the left-hand menu, click Users.
+Click user-3.
+Under Permissions, expand the ec2-admin policy.
+Click Edit policy.
+Click the plus-sign icon next to the ec2-admin policy.
+Review the policy, but do not make any changes.
+Use the IAM Sign-In Link to Sign In as a User
+Click Dashboard in the left-hand menu.
+Copy the sign-in URL located on the right, under AWS Account.
+In a new browser tab, navigate to the URL.
+user-1
+Using the credentials provided in the lab overview, log in to the user-1 account.
+Navigate to S3.
+Click Create bucket.
+Enter a globally unique bucket name.
+Click Create bucket.
+You should receive an "Access Denied" error, since this user cannot create buckets in S3.
+Navigate to EC2.
+You won't be able to see any instances.
+Click on the username in the top-right corner of the page.
+Note: Before clicking Sign Out you will need to copy the Account ID in the sign out box to log in to user-2 and user-3 as the ID is not persistent after logging out.
+
+Click Sign Out.
+user-2
+Using the credentials provided in the lab overview, log in to the user-2 account.
+Navigate to EC2 > Instances (running).
+This time, you should be able to view the running instances.
+Select the running instance.
+Click Instance state > Stop instance > Stop.
+You should see an error message, since this user doesn't have permission to stop instances.
+Navigate to S3.
+You should see an error message that you don't have permission to list buckets.
+Click on the username in the top-right corner of the page.
+Note: Before clicking Sign Out you will need to copy the Account ID in the sign out box to log in to user-2 and user-3 as the ID is not persistent after logging out.
+
+Click Sign Out.
+user-3
+Using the credentials provided in the lab overview, log in to the user-3 account.
+Navigate to EC2 > Instances (running).
+Select the running instance.
+Click Instance state > Stop instance > Stop.
+You should see it enters the Stopping state.
+Refresh the table.
+Click Clear filters.
+Once the instance has stopped successfully, select it and click Instance state > Start instance.
+Refresh the table to make sure it enters the Running state.
+
+
+
