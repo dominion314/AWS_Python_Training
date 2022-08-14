@@ -1,21 +1,16 @@
-Lesson 1
-   
-Overview:
+- Overview:
 
-In this activity, you will use the AWS CLI to launch an EC2 instance. When you create the instance, 
-the user-data file you reference will configure the instance to have an Apache web server, a MariaDB relational database, and PHP running on it.
-Together, these software packages installed on a single machine are often referred to as a LAMP stack
-LAMP stacks are a common way to create a website, which also has a database backend deployment, on a single machine.
+In this activity, you will use the AWS CLI to launch an EC2 instance. When you create the instance, the user-data file you reference will configure the instance to have the following:
 
-After completing this activity, you will be able to:
+// Apache web server
+// MariaDB relational database
+// PHP running on it.
 
-	-Launch an Amazon EC2 instance using the AWS CLI
-	-Troubleshoot AWS CLI commands and Amazon EC2 service settings
-   
+Together, these software packages installed on a single machine are often referred to as a LAMP stack. LAMP stacks are a common way to create a website, which also has a database backend deployment, on a single machine.
+
 Business Case:
 
-Many customers who come to Doms Café have said that they would like to be able to place orders online.
-It seems that the work of a cloud operations professional is never complete! 
+Many customers who come to Doms Café have said that they would like to be able to place orders online. It seems that the work of a cloud operations professional is never complete! 
 In this activity, you will again take on the roles of consultant Watchdog IT, and create a functioning website for Dom's Cafe.
 
 
